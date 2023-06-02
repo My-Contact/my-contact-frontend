@@ -1,9 +1,23 @@
+import React from "react";
+import "react-toastify/dist/ReactToastify.css";
+import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+// import { UserProvider } from "./providers/UserProvider";
+import { RoutesApp } from "./routes/routes";
 
-function App() {
+import { GlobalStyles } from "./styles/GlobalStyles";
+
+export function App() {
   return (
-    <div>
-    </div>
+    <>
+      <GlobalStyles />
+      <BrowserRouter>
+        {/* <UserProvider> */}
+          <ToastContainer autoClose={3000} />
+          <GlobalStyles />
+          <RoutesApp />
+        {/* </UserProvider> */}
+      </BrowserRouter>
+    </>
   );
 }
-
-export default App;
