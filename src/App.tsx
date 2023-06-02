@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { RoutesApp } from "./routes/routes";
-
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { UserProvider } from "./providers/userProvider";
 
@@ -14,7 +13,6 @@ export function App() {
       <BrowserRouter>
         <UserProvider>
           <ToastContainer autoClose={3000} />
-          <GlobalStyles />
           <RoutesApp />
         </UserProvider>
       </BrowserRouter>
