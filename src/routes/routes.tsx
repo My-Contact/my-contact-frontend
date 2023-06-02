@@ -1,12 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "../pages/home";
+import Login from "../pages/login";
+import Register from "../pages/register";
 
 export const RoutesApp = () => {
   return (
     <Routes>
       <Route path="/" element={<Home/>}/>
-      <Route path="/login" />  
-      <Route path="/register" />
+      <Route path="/register" element={<Register/>}/>
+      <Route path="/login" element={<Login/>} />  
       {/* <Route element={<ProtectedRoutes />}> */}
          <Route path="/dashboard" />
       {/* </Route> */}
