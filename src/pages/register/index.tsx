@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { iRegisterData } from "../../interfaces/userInterface";
 import { registerSchema } from "./registerSchema";
 import { UserContext } from "../../providers/userProvider";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const {
@@ -14,7 +15,7 @@ const Register = () => {
     mode: "onBlur",
     resolver: yupResolver(registerSchema),
   });
-  const { registerSubmit, loading } = useContext(UserContext);
+  const { registerSubmit } = useContext(UserContext);
 
   const onSubmit: SubmitHandler<iRegisterData> = (data: any) => {
     const { confirmation, ...body } = data;
@@ -23,6 +24,15 @@ const Register = () => {
 
   return (
     <div>
+      <section>
+        <img src="" alt="" />
+        <h3>Já tem cadastro?</h3>
+        <Link to="/login">Ir para login</Link>
+        <h3>Não quer usar sua conta?</h3>
+        <Link className="homePage" to="/">
+          Voltar para a home
+        </Link>
+      </section>
       <form onSubmit={handleSubmit(onSubmit)}>
         <h2>Registro</h2>
         <div>
@@ -89,9 +99,6 @@ const Register = () => {
         </div>
         <button type="submit">Registrar</button>
       </form>
-      <section>
-        <img src="" alt="" />
-      </section>
     </div>
   );
 };

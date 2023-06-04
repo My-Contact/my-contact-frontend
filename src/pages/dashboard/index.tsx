@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import Header from "../../components/Header";
+import Main from "../../components/Main";
 
-function index() {
+const Dashboard = () => {
   return (
-    <div>index</div>
-  )
-}
+    <div>
+      <Header />
+      <Main />
+    </div>
+  );
+};
 
-export default index
+export default Dashboard;

@@ -14,13 +14,15 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     :root {
+        --primary-color-100: #1E9DEE;
+        --primary-color-50: #80CEFF;
         --color-black: #000;
         --color-grey-100: #7A7A7A;
-        --color-grey-90: #969696;
-        --color-grey-70: #848484;
-        --color-grey-60: #D2D2D2;
-        --color-grey-50: #F5F5F5;
-        --color-grey-40: #EDDCDC;
+        --color-grey-90: #848484;
+        --color-grey-80: #969696;
+        --color-grey-70: #D2D2D2;
+        --color-grey-60: #F5F5F5;
+        --color-grey-50: #EDDCDC;
         --color-white: #FFFFFF;
 
         --font-size-36: 2.25rem;
@@ -30,7 +32,10 @@ export const GlobalStyles = createGlobalStyle`
         --font-size-14: 0.875rem;
         --font-size-12: 0.75rem;
 
-        --radius-1: 8px;
+        --radius-1: 4px;
+        --radius-2: 8px;
+        --radius-3: 16px;
+        --radius-4: 32px;
     }
 
     a {

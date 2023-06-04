@@ -48,25 +48,12 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
   const loginSubmit = async (data: iLoginData) => {
     try {
       setLoading(true);
-      const response = await api.post("/login", data);
+      const response = await api.post("login", data);
+      localStorage.setItem("@TOKEN", response.data.token);
       toast.success("Login efetuado!");
-      localStorage.setItem("@TOKEN", response.data.accessToken);
-      localStorage.setItem("@USERID", response.data.user.id);
-      setUser(response.data.user);
-      navigate("/home");
+      navigate("/dashboard");
     } catch (error) {
-      const apiError = error as AxiosError<iApiError>;
-      let message = apiError.response?.data || "";
-      let toastErrorMessage = "";
-
-      if (message === "Invalid credentials") {
-        toastErrorMessage = "Senha incorreta";
-      } else if (message === "User not found") {
-        toastErrorMessage = "Usuário não encontrado";
-      } else {
-        toastErrorMessage = "Não foi possível efetuar o login.";
-      }
-      toast.error(toastErrorMessage);
+      toast.error(`${error}`);
     } finally {
       setLoading(false);
     }
