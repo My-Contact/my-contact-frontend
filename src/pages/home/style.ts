@@ -28,6 +28,14 @@ export const StyleHome = styled.section`
       color: var(--color-white);
       border-radius: var(--radius-4);
       box-shadow: 0px 2px 2px 1px var(--color-grey-80);
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        color: var(--primary-color-100);
+        background-color: var(--primary-color-10);
+        border: 1px solid var(--primary-color-50);
+        box-shadow: 0px 1px 5px 1px var(--primary-color-50);
+      }
     }
 
     .page-login {
@@ -39,7 +47,7 @@ export const StyleHome = styled.section`
     }
 
     @media (min-width: 700px) {
-        max-width: 400px;
+      max-width: 400px;
     }
   }
 `;
