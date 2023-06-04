@@ -72,7 +72,7 @@ export const StyleFormPage = styled.main`
   }
 
   @media (min-width: 700px) {
-    width: 90vw;
+    width: 80vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;

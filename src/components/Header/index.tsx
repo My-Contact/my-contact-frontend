@@ -1,17 +1,19 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../providers/userProvider";
+import { StyleHeader } from "./style";
+import iconLogout from "../../assets/imgs/logout1.svg"
 
 const Header = () => {
   const { logout } = useContext(UserContext);
   return (
-    <section>
+    <StyleHeader>
       <div>
-        <img src="" alt="Logo" />
+        <h1>My Contacts</h1>
         <button type="button" title="Deslogar" onClick={logout}>
-          <img src="" alt="Sair" />
+          <img src={iconLogout} alt="Sair" />
         </button>
       </div>
-    </section>
+    </StyleHeader>
   );
 };
 

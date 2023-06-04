@@ -29,7 +29,7 @@ const Register = () => {
       <img src={imgLogin} alt="Agenda de contatos" />
       <section>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <h2>Registro</h2>
+          <h2>Cadastro</h2>
           <div>
             <label htmlFor="name">Nome:</label>
             <input

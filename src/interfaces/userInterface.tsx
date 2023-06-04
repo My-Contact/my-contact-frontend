@@ -1,5 +1,3 @@
-import { AxiosResponse } from "axios";
-
 export interface iUserProviderProps {
   children: React.ReactNode;
 }
@@ -19,7 +17,7 @@ export interface iRegisterData {
 }
 
 export interface iUserData extends iRegisterData {
-    id: number;
+  id: number;
 }
 
 export interface iApiError {

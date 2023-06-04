@@ -12,7 +12,7 @@ export function App() {
       <GlobalStyles />
       <BrowserRouter>
         <UserProvider>
-          <ToastContainer autoClose={3000} />
+          <ToastContainer autoClose={1000} />
           <RoutesApp />
         </UserProvider>
       </BrowserRouter>
