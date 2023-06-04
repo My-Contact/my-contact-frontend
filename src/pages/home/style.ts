@@ -27,8 +27,9 @@ export const StyleHome = styled.section`
       padding: 10px;
       color: var(--color-white);
       border-radius: var(--radius-4);
-      box-shadow: 0px 2px 2px 1px var(--color-grey-80);
+      box-shadow: 0px 2px 3px 1px var(--color-grey-80);
       transition: background-color 0.3s ease;
+      font-weight: bold;
 
       &:hover {
         color: var(--primary-color-100);
