@@ -1,21 +1,26 @@
 import React from "react";
+import imgProfile from "../../assets/imgs/user.svg";
+import iconAddContact from "../../assets/imgs/add-contact.svg";
+import iconListContacts from "../../assets/imgs/list-contacts1.svg";
+import iconSearch from "../../assets/imgs/search.svg";
+import { StyleContainerList } from "./style";
 
 const ContainerListContacts = () => {
   return (
-    <div>
+    <StyleContainerList>
       <header>
         <form>
           <input type="text" placeholder="Pesquisar contatos..." />
           <button>
-            <img src="" alt="Search" />
+            <img src={iconSearch} alt="Search" />
           </button>
         </form>
         <div>
           <button>
-            <img src="" alt="Lista de contatos" />
+            <img src={iconListContacts} alt="Lista de contatos" />
           </button>
           <button>
-            <img src="" alt="Novo contato" />
+            <img src={iconAddContact} alt="Novo contato" />
           </button>
         </div>
       </header>
@@ -24,15 +29,13 @@ const ContainerListContacts = () => {
         <ul>
           <li>
             <button>
-              <img src="" alt="Contato1" />
-              <p>
-                Nome: <span>Nome do contato</span>
-              </p>
+              <img src={imgProfile} alt="Contato1" />
+              <p>Nome do contato</p>
             </button>
           </li>
         </ul>
       </main>
-    </div>
+    </StyleContainerList>
   );
 };
 
