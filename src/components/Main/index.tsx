@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import ContainerListContacts from "../ContainerListContacts/ContainerListContacts";
 import { StyleMain } from "./style";
 import imgProfile from "../../assets/imgs/user.svg";
+import { UserContext } from "../../providers/userProvider";
 
 const Main = () => {
+  const { user } = useContext(UserContext);
+  console.log(user);
+  
   return (
     <StyleMain>
       <div className="container-perfil">
-        <img src={imgProfile} alt="Imagem de perfil" />
+        <img src={user?.image} alt="Imagem de perfil" />
         <div>
-          <h3>Nome do Fulano</h3>
+          <h3>{user?.name}</h3>
           <button>Editar perfil</button>
         </div>
       </div>

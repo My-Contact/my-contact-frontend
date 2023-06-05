@@ -30,30 +30,31 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
     const getUserId = async (userId: number) => {
       try {
         setLoading(true);
-        const { data: newUser } = await api.get(`/users/${userId}`, headers);
-        if (newUser.id) {
-          setUser(newUser);
-          navigate("/");
-        }
+        const response = await api.get(`users/${userId}`, headers);
+        const userProfile = response.data;
+        setUser(userProfile);
+        
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
     };
-    const userId = Number(localStorage.getItem("@USERID"));
-    getUserId(userId);
+    getUserId(Number(localStorage.getItem("@USERID")));
   }, []);
 
   const loginSubmit = async (data: iLoginData) => {
     try {
       setLoading(true);
       const response = await api.post("login", data);
-      localStorage.setItem("@TOKEN", response.data.token);
+      console.log(response);
+
+      localStorage.setItem("@TOKEN", response.data.userAuth.token);
+      localStorage.setItem("@USERID", response.data.userAuth.userId);
       toast.success("Login efetuado!");
       navigate("/dashboard");
     } catch (error) {
-      toast.error(`${error}`);
+      toast.error("E-mail ou senha incorretos!");
     } finally {
       setLoading(false);
     }
