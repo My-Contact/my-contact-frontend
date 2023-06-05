@@ -21,6 +21,7 @@ export const StyleMain = styled.section`
     img {
       width: 60px;
       object-fit: cover;
+      border-radius: 50%;
     }
 
     div {

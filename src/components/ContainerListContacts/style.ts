@@ -68,6 +68,10 @@ export const StyleContainerList = styled.div`
           display: flex;
           gap: 10px;
           align-items: center;
+
+          img {
+            border-radius: 50%;
+          }
         }
       }
     }

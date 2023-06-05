@@ -2,7 +2,7 @@ import React from "react";
 import imgProfile from "../../assets/imgs/user.svg";
 import iconAddContact from "../../assets/imgs/add-contact.svg";
 import iconListContacts from "../../assets/imgs/list-contacts1.svg";
-import iconSearch from "../../assets/imgs/search.svg";
+import iconSearch from "../../assets/imgs/search2.svg";
 import { StyleContainerList } from "./style";
 
 const ContainerListContacts = () => {
