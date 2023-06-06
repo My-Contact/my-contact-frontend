@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import imgProfile from "../../assets/imgs/user.svg";
 import iconAddContact from "../../assets/imgs/add-contact.svg";
 import iconListContacts from "../../assets/imgs/list-contacts1.svg";
 import iconSearch from "../../assets/imgs/search2.svg";
 import { StyleContainerList } from "./style";
 
+import { ContactsContext } from "../../providers/contactsProvider";
+
 const ContainerListContacts = () => {
+  const { listContacts } = useContext(ContactsContext);
+
   return (
     <StyleContainerList>
       <header>
@@ -16,7 +20,7 @@ const ContainerListContacts = () => {
           </button>
         </form>
         <div>
-          <button>
+          <button >
             <img src={iconListContacts} alt="Lista de contatos" />
           </button>
           <button>
@@ -25,15 +29,24 @@ const ContainerListContacts = () => {
         </div>
       </header>
       <main>
-        {/* se não tiver contatos, "Adicione novos contatos" */}
-        <ul>
-          <li>
-            <button>
-              <img src={imgProfile} alt="Contato1" />
-              <p>Nome do contato</p>
-            </button>
-          </li>
-        </ul>
+        {listContacts && listContacts.length > 0 ? (
+          <ul>
+            {listContacts?.map((contact) => {
+              const { id, name, phone } = contact;
+              return (
+                <li>
+                  <button key={id}>
+                    <img src={imgProfile} alt="Contato1" />
+                    <p>{name}</p>
+                    <p>{phone}</p>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p>Adicione novos contatos...</p>
+        )}
       </main>
     </StyleContainerList>
   );

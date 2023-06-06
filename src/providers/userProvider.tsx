@@ -33,7 +33,6 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         const response = await api.get(`users/${userId}`, headers);
         const userProfile = response.data;
         setUser(userProfile);
-        
       } catch (error) {
         console.log(error);
       } finally {
@@ -41,7 +40,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
       }
     };
     getUserId(Number(localStorage.getItem("@USERID")));
-  }, []);
+  }, [user]);
 
   const loginSubmit = async (data: iLoginData) => {
     try {
@@ -118,7 +117,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         deleteUser,
       }}
     >
-      {children}
+      { children }
     </UserContext.Provider>
   );
 };

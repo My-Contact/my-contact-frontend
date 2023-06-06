@@ -22,10 +22,11 @@ export interface iContactData extends iContactDataRequest {
 export type iListContacts = iContactData[];
 
 export interface iContactsContextProvider {
-    contact: iContactData | null;
-    listContacts: Array<iContactData>;
-    loading: boolean;
-    createContact: (data: iContactDataRequest) => void;
-    editcontacts: (contactsId: number, contactsEditedData: iContactData) => void;
-    deletecontacts: (contactsId: number) => void;
+  contact: iContactData | null;
+  listContacts: iListContacts | null;
+  loading: boolean;
+  getContactId: (contactId: number) => void;
+  createContact: (data: iContactDataRequest) => void;
+  editContact: (contactsId: number, contactsEditedData: iContactData) => void;
+  deleteContact: (contactsId: number) => void;
 }

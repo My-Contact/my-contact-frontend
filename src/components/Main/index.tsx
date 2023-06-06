@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ContainerListContacts from "../ContainerListContacts/ContainerListContacts";
 import { StyleMain } from "./style";
 import imgProfile from "../../assets/imgs/user.svg";
@@ -6,8 +6,7 @@ import { UserContext } from "../../providers/userProvider";
 
 const Main = () => {
   const { user } = useContext(UserContext);
-  console.log(user);
-  
+
   return (
     <StyleMain>
       <div className="container-perfil">

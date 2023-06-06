@@ -5,6 +5,7 @@ import { ToastContainer } from "react-toastify";
 import { RoutesApp } from "./routes/routes";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { UserProvider } from "./providers/userProvider";
+import { ContactsProvider } from "./providers/contactsProvider";
 
 export function App() {
   return (
@@ -12,8 +13,10 @@ export function App() {
       <GlobalStyles />
       <BrowserRouter>
         <UserProvider>
-          <ToastContainer autoClose={1000} />
-          <RoutesApp />
+          <ContactsProvider>
+            <ToastContainer autoClose={1000} />
+            <RoutesApp />
+          </ContactsProvider>
         </UserProvider>
       </BrowserRouter>
     </>

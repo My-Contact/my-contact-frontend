@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -32,13 +32,28 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
       setLoading(true);
       const response = await api.get(`contacts/${contactId}`, headers);
       const contactForId = response.data;
-      setContact(contactForId);
+      setListContacts(contactForId);
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    const getListContacts = async () => {
+      try {
+        const response = await api.get("contacts", headers);
+        setLoading(true);
+        setListContacts(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getListContacts();
+  }, [listContacts]);
 
   const createContact = async (data: iContactDataRequest) => {
     try {
@@ -88,12 +103,13 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
         contact,
         listContacts,
         loading,
+        getContactId,
         createContact,
-        editcontacts: editContact,
-        deletecontacts: deleteContact,
+        editContact,
+        deleteContact,
       }}
     >
-      {children}
+      { children }
     </ContactsContext.Provider>
   );
 };
