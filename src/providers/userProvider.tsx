@@ -22,11 +22,10 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
   const [user, setUser] = useState<iUserData | null>(null);
   const headers = {
     headers: {
-      authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
+      Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
     },
   };
 
-  useEffect(() => {
     const getUserId = async (userId: number) => {
       try {
         setLoading(true);
@@ -39,15 +38,11 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
         setLoading(false);
       }
     };
-    getUserId(Number(localStorage.getItem("@USERID")));
-  }, [user]);
 
   const loginSubmit = async (data: iLoginData) => {
     try {
       setLoading(true);
       const response = await api.post("login", data);
-      console.log(response);
-
       localStorage.setItem("@TOKEN", response.data.userAuth.token);
       localStorage.setItem("@USERID", response.data.userAuth.userId);
       toast.success("Login efetuado!");
@@ -110,6 +105,7 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
       value={{
         user,
         loading,
+        getUserId,
         loginSubmit,
         registerSubmit,
         logout,

@@ -25,8 +25,17 @@ export interface iContactsContextProvider {
   contact: iContactData | null;
   listContacts: iListContacts | null;
   loading: boolean;
+  isModalCreateContactOpen:boolean;
+  setModalCreateContactOpen: (boolean: boolean) => void;
+  selectedContactId: string;
+  setSelectedContactId: (contactId: string) => void;
+  getListContacts(): Promise<void>;
   getContactId: (contactId: number) => void;
   createContact: (data: iContactDataRequest) => void;
-  editContact: (contactsId: number, contactsEditedData: iContactData) => void;
-  deleteContact: (contactsId: number) => void;
+  editContact: (contactsEditedData: iContactData) => void;
+  deleteContact: () => void;
+  isModalEditContactOpen: boolean; 
+  setModalEditContactOpen: (boolean: boolean) => void;
+  isModalDeleteContactOpen: boolean; 
+  setModalDeleteContactOpen: (boolean: boolean) => void;
 }

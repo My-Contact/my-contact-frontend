@@ -29,6 +29,7 @@ export interface iApiError {
 export interface iUserContextProvider {
   user: iUserData | null;
   loading: boolean;
+  getUserId: (userId: number) => void;
   loginSubmit: (data: iLoginData) => void;
   registerSubmit: (data: iRegisterData) => void;
   logout: () => void;

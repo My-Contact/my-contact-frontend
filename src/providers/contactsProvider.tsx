@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -21,11 +21,16 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
   const [loading, setLoading] = useState(true);
   const [listContacts, setListContacts] = useState<iListContacts>([]);
   const [contact, setContact] = useState<iContactData | null>(null);
+  const [isModalCreateContactOpen, setModalCreateContactOpen] = useState(false);
+  const [isModalEditContactOpen, setModalEditContactOpen] = useState(false);
+  const [isModalDeleteContactOpen, setModalDeleteContactOpen] = useState(false);
+  const [selectedContactId, setSelectedContactId] = useState("");
   const headers = {
     headers: {
-      authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
+      Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
     },
   };
+
 
   const getContactId = async (contactId: number) => {
     try {
@@ -40,25 +45,22 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
     }
   };
 
-  useEffect(() => {
-    const getListContacts = async () => {
-      try {
-        const response = await api.get("contacts", headers);
-        setLoading(true);
-        setListContacts(response.data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    getListContacts();
-  }, [listContacts]);
+  const getListContacts = async () => {
+    try {
+      const response = await api.get("contacts", headers);
+      setLoading(true);
+      setListContacts(response.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const createContact = async (data: iContactDataRequest) => {
     try {
       setLoading(true);
-      await api.post("/contacts", data);
+      await api.post("/contacts", data, headers);
       toast.success("Contato criado com sucesso!");
       navigate("/dashboard");
     } catch (error) {
@@ -72,26 +74,27 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
   };
 
   const editContact = async (
-    contactId: number,
     iContactDataRequest: iContactDataRequest
   ) => {
     try {
       const response = await api.patch(
-        `/contacts/${contactId}`,
+        `/contacts/${selectedContactId}`,
         iContactDataRequest,
         headers
       );
       setContact(response.data);
+      setModalEditContactOpen(false)
       toast.success("Contato atualizado.");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const deleteContact = async (contactId: number) => {
+  const deleteContact = async () => {
     try {
-      await api.delete(`/contacts/${contactId}`, headers);
+      await api.delete(`/contacts/${selectedContactId}`, headers);
       toast.success("Contato deletado com sucesso.");
+      setModalEditContactOpen(false)
     } catch (error) {
       console.log(error);
     }
@@ -103,13 +106,20 @@ export const ContactsProvider = ({ children }: iContactsProviderProps) => {
         contact,
         listContacts,
         loading,
+        selectedContactId,
+        setSelectedContactId,
+        isModalCreateContactOpen,
+        setModalCreateContactOpen,
+        getListContacts,
         getContactId,
         createContact,
         editContact,
         deleteContact,
+        isModalEditContactOpen, setModalEditContactOpen,isModalDeleteContactOpen, setModalDeleteContactOpen,
+
       }}
     >
-      { children }
+      {children}
     </ContactsContext.Provider>
   );
 };
