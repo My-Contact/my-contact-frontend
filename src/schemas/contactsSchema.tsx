@@ -6,3 +6,10 @@ export const registerContactsSchema = yup.object().shape({
   phone: yup.string().required("Email obrigatório").min(11),
   image: yup.string(),
 });
+
+export const updateContactsSchema = yup.object().shape({
+  name: yup.string(),
+  email: yup.string().email("Email inválido"),
+  phone: yup.string(),
+  image: yup.string(),
+});

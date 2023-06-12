@@ -25,8 +25,7 @@ const CreateContactModal = () => {
   };
 
   return (
-    <ModalBase onClose={setModalCreateContactOpen}>
-      <h1>Modal de Criar Contato</h1>
+    <ModalBase onClose={setModalCreateContactOpen} title="Modal de Criar Contato">
       <StyleFormPage>
         <section>
           <form onSubmit={handleSubmit(onSubmit)}>

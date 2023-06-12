@@ -3,9 +3,9 @@ import { ContactsContext } from "../../../providers/contactsProvider";
 import ModalBase from "../ModalBase";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { registerContactsSchema } from "../../../schemas/contactsSchema";
 import { iContactDataRequest } from "../../../interfaces/contactsInterface";
 import { StyleFormPage } from "../../../styles/StyleFormPages";
+import { updateContactsSchema } from "../../../schemas/contactsSchema";
 
 const EditContactModal = () => {
   const { setModalDeleteContactOpen, editContact, deleteContact } =
@@ -17,7 +17,7 @@ const EditContactModal = () => {
     register,
   } = useForm<iContactDataRequest>({
     mode: "onBlur",
-    resolver: yupResolver(registerContactsSchema),
+    resolver: yupResolver(updateContactsSchema),
   });
 
   const onSubmit: SubmitHandler<iContactDataRequest> = (data: any) => {
@@ -26,8 +26,7 @@ const EditContactModal = () => {
   };
 
   return (
-    <ModalBase onClose={setModalDeleteContactOpen}>
-      <h1>Modal de Editar Contato</h1>
+    <ModalBase onClose={setModalDeleteContactOpen} title={"Modal de Editar Contato"}>
       <StyleFormPage>
         <section>
           <form onSubmit={handleSubmit(onSubmit)}>
