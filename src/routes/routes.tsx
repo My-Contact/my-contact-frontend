@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from "react-router-dom";
+import { ProtectedRoutes } from "../components/ProtectRoutes";
 import Dashboard from "../pages/dashboard";
 import Home from "../pages/home";
 import Login from "../pages/login";
@@ -10,9 +11,9 @@ export const RoutesApp = () => {
       <Route path="/" element={<Home />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      {/* <Route element={<ProtectedRoutes />}> */}
-      <Route path="/dashboard" element={<Dashboard />} />
-      {/* </Route> */}
+      <Route element={<ProtectedRoutes />}>
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

@@ -47,8 +47,12 @@ export const UserProvider = ({ children }: iUserProviderProps) => {
       localStorage.setItem("@USERID", response.data.userAuth.userId);
       toast.success("Login efetuado!");
       navigate("/dashboard");
-    } catch (error) {
-      toast.error("E-mail ou senha incorretos!");
+    } catch (error: any) {
+      if (error?.response && error.response?.status === 500) {
+        toast.error("Erro no servidor");
+      } else {
+        toast.error("E-mail ou senha incorretos!");
+      }
     } finally {
       setLoading(false);
     }
